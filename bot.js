@@ -24,7 +24,7 @@ client.on('interactionCreate', async interaction => {
 	}
 	//the funny part
 	else if (commandName === 'test'){
-		await interaction.reply('test');
+		interaction.reply('test');
 		prompt = interaction.options.getString('prompt');
 		exec(`python stable-diffusion/scripts/txt2img.py --prompt ${prompt} --ckpt ${pathToModel}`, (err, stdout, stderr) => {
 			if (err) {
@@ -34,6 +34,7 @@ client.on('interactionCreate', async interaction => {
 			console.log(stdout);
 			// interaction.reply(stdout);
 		});	
+		interaction.reply ({files: ['stable-diffusion/output.png']});
 	} 
 });
 
