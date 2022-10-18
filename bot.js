@@ -25,7 +25,7 @@ client.on('interactionCreate', async interaction => {
 	//the funny part
 	else if (commandName === 'test'){
 		interaction.reply('test');
-		prompt = interaction.options.getString('prompt');
+		prompt = "masterpiece, best quality, " + interaction.options.getString('prompt');
 		exec(`python stable-diffusion/scripts/txt2img.py --prompt ${prompt} --ckpt ${pathToModel} --outdir /output.png`, (err, stdout, stderr) => {
 			if (err) {
 				console.log(err);
