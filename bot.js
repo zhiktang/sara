@@ -41,7 +41,3 @@ client.on('interactionCreate', async interaction => {
 		interaction.reply(interaction.options.getString('prompt'));
 	}
 });
-
-// Login to Discord with your client's token
-client.login(token);
-console.log('the current ')
