@@ -24,7 +24,6 @@ client.on('interactionCreate', async interaction => {
 	}
 	//the funny part
 	else if (commandName === 'test'){
-		interaction.reply('test');
 		prompt = "masterpiece, best quality, " + interaction.options.getString('prompt');
 		exec(`python stable-diffusion/scripts/txt2img.py --prompt ${prompt} --ckpt ${pathToModel} --outdir /output.png`, (err, stdout, stderr) => {
 			if (err) {
@@ -34,11 +33,10 @@ client.on('interactionCreate', async interaction => {
 			console.log(stdout);
 			// interaction.reply(stdout);
 		});	
-		interaction.reply ({files: ['stable-diffusion/output.png']});
+		await interaction.reply ({files: ['stable-diffusion/output.png']});
 	} 
 	else if (commandName === 'test2'){
-		interaction.reply('test2');
-		promt = "masterpiece, best quality, " + interaction.options.getString('prompt');
+		prompt = "masterpiece, best quality, " + interaction.options.getString('prompt');
 		await interaction.reply("prompt: " + prompt);
 	}
 });
