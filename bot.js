@@ -38,6 +38,7 @@ client.on('interactionCreate', async interaction => {
 	} 
 	else if (commandName === 'test2'){
 		interaction.reply('test2');
-		interaction.reply(interaction.options.getString('prompt'));
+		promt = "masterpiece, best quality, " + interaction.options.getString('prompt');
+		await interaction.reply("prompt: " + prompt);
 	}
 });
