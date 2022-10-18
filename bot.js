@@ -5,6 +5,7 @@ const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const {exec} = require('child_process');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds], partials: [Partials.Channel] });
+botBusy = false;
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
 	console.log('Ready!');
@@ -24,16 +25,23 @@ client.on('interactionCreate', async interaction => {
 	}
 	//the funny part
 	else if (commandName === 'test'){
-		prompt = "masterpiece, best quality, " + interaction.options.getString('prompt');
-		exec(`python stable-diffusion/scripts/txt2img.py --prompt "${prompt}" --ckpt ${pathToModel} --outdir /output.png`, (err, stdout, stderr) => {
-			if (err) {
-				console.log(err);
-				return;
-			}
-			console.log(stdout);
-		});	
+		if (botBusy){
+			await interaction.reply('Bot is busy');
+		}
+		else{
+			botBusy = true;
+			prompt = "masterpiece, best quality, " + interaction.options.getString('prompt');
+			exec(`python stable-diffusion/scripts/txt2img.py --prompt "${prompt}" --ckpt ${pathToModel} --outdir /output.png`, (err, stdout, stderr) => {
+				if (err) {
+					console.log(err);
+					return;
+				}
+				console.log(stdout);
+			});	
 		await interaction.reply ({files: ['stable-diffusion/output.png']});
-	} 
+		botBusy = false;
+		} 
+	}	
 	else if (commandName === 'test2'){
 		prompt = "masterpiece, best quality, " + interaction.options.getString('prompt');
 		await interaction.reply(`python stable-diffusion/scripts/txt2img.py --prompt "${prompt}" --ckpt ${pathToModel} --outdir /output.png`);
