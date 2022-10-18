@@ -31,7 +31,6 @@ client.on('interactionCreate', async interaction => {
 				return;
 			}
 			console.log(stdout);
-			// interaction.reply(stdout);
 		});	
 		await interaction.reply ({files: ['stable-diffusion/output.png']});
 	} 
