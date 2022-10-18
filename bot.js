@@ -1,9 +1,8 @@
 // Require the necessary discord.js classes
 
-const { token } = require('./config.json');
+const { token, pathToModel } = require('./config.json');
 const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const {exec} = require('child_process');
-const scriptLocation = './script.sh';
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds], partials: [Partials.Channel] });
 // When the client is ready, run this code (only once)
@@ -27,7 +26,7 @@ client.on('interactionCreate', async interaction => {
 	else if (commandName === 'test'){
 		await interaction.reply('test');
 		prompt = interaction.options.getString('prompt');
-		exec('python ${scriptLocation}', (err, stdout, stderr) => {
+		exec(`python stable-diffusion/scripts/txt2img.py --prompt ${prompt} --ckpt ${pathToModel}`, (err, stdout, stderr) => {
 			if (err) {
 				console.log(err);
 				return;
@@ -40,4 +39,4 @@ client.on('interactionCreate', async interaction => {
 
 // Login to Discord with your client's token
 client.login(token);
- 
+console.log('the current ')
