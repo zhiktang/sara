@@ -38,5 +38,14 @@ client.on('interactionCreate', async interaction => {
 		prompt = "masterpiece, best quality, " + interaction.options.getString('prompt');
 		await interaction.reply(`python stable-diffusion/scripts/txt2img.py --prompt "${prompt}" --ckpt ${pathToModel} --outdir /output.png`);
 	}
+	else if (commandName === 'ls'){
+		exec(`ls`, (err, stdout, stderr) => {
+			if (err) {
+				console.log(err);
+				return;
+			}
+			interaction.reply(stdout);
+		});		
+	}
 });
 client.login(token);
