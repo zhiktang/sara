@@ -36,6 +36,10 @@ client.on('interactionCreate', async interaction => {
 		});	
 		interaction.reply ({files: ['stable-diffusion/output.png']});
 	} 
+	else if (commandName === 'test2'){
+		interaction.reply('test2');
+		interaction.reply(interaction.options.getString('prompt'));
+	}
 });
 
 // Login to Discord with your client's token
