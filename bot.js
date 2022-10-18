@@ -38,8 +38,8 @@ client.on('interactionCreate', async interaction => {
 				}
 				console.log(stdout);
 			});	
-		await interaction.reply ({files: ['stable-diffusion/output.png']});
-		botBusy = false;
+			await interaction.reply ({files: ['stable-diffusion/output.png']});
+			botBusy = false;
 		} 
 	}	
 	else if (commandName === 'test2'){
