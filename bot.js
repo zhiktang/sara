@@ -42,3 +42,4 @@ client.on('interactionCreate', async interaction => {
 		await interaction.reply("prompt: " + prompt);
 	}
 });
+client.login(token);
