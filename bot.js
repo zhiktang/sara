@@ -25,7 +25,7 @@ client.on('interactionCreate', async interaction => {
 	//the funny part
 	else if (commandName === 'test'){
 		prompt = "masterpiece, best quality, " + interaction.options.getString('prompt');
-		exec(`python stable-diffusion/scripts/txt2img.py --prompt ${prompt} --ckpt ${pathToModel} --outdir /output.png`, (err, stdout, stderr) => {
+		exec(`python stable-diffusion/scripts/txt2img.py --prompt "${prompt}" --ckpt ${pathToModel} --outdir /output.png`, (err, stdout, stderr) => {
 			if (err) {
 				console.log(err);
 				return;
@@ -37,7 +37,7 @@ client.on('interactionCreate', async interaction => {
 	} 
 	else if (commandName === 'test2'){
 		prompt = "masterpiece, best quality, " + interaction.options.getString('prompt');
-		await interaction.reply("prompt: " + prompt);
+		await interaction.reply(`python stable-diffusion/scripts/txt2img.py --prompt "${prompt}" --ckpt ${pathToModel} --outdir /output.png`);
 	}
 });
 client.login(token);
