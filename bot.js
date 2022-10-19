@@ -37,8 +37,8 @@ client.on('interactionCreate', async interaction => {
 					return;
 				}
 				console.log(stdout);
+				interaction.reply ({files: ['stable-diffusion/output.png']});
 			});	
-			await interaction.reply ({files: ['stable-diffusion/output.png']});
 			botBusy = false;
 		} 
 	}	
