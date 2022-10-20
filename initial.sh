@@ -1,11 +1,10 @@
 #!/bin/bash
 
-git clone https://github.com/CompVis/stable-diffusion stable-diffusion
+git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui stable-diffusion-webui
 
-cd stable-diffusion
+cd stable-diffusion-webui
 
-conda env create -f environment.yaml
-conda activate ldm
+./install
 
 cd ../
 
