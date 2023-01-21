@@ -1,6 +1,6 @@
 // Require the necessary discord.js classes
 
-const { token, pathToModel } = require('./config.json');
+const { token } = require('./config.json');
 const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const {exec} = require('child_process');
 
